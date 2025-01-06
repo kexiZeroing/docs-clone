@@ -13,6 +13,8 @@ import Image from '@tiptap/extension-image';
 import Underline from '@tiptap/extension-underline';
 import FontFamily from '@tiptap/extension-font-family';
 import TextStyle from '@tiptap/extension-text-style';
+import { Color } from '@tiptap/extension-color';
+import Highlight from '@tiptap/extension-highlight';
 
 import { useEditorStore } from '@/store/use-editor-store';
 
@@ -66,6 +68,11 @@ export const Editor = () => {
       Underline,
       FontFamily,
       TextStyle,
+      Color,
+      // https://tiptap.dev/docs/editor/extensions/marks/highlight
+      Highlight.configure({
+        multicolor: true,
+      }),
     ],
     content: `
         <p>Hello Tiptap</p>
