@@ -1,6 +1,7 @@
 'use client';
 
 import type { Level } from '@tiptap/extension-heading';
+import { type ColorResult, SketchPicker } from 'react-color';
 import { cn } from '@/lib/utils';
 import {
   LucideIcon,
@@ -13,6 +14,7 @@ import {
   ListTodoIcon,
   RemoveFormattingIcon,
   ChevronDownIcon,
+  HighlighterIcon,
 } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import {
@@ -144,10 +146,50 @@ const HeadingLevelButton = () => {
   )
 };
 
-// const TextColorButton = () => {
-//   const { editor } = useEditorStore();
-//   const value = editor?.getAttributes('textStyle').color || '#000000';
-// };
+const TextColorButton = () => {
+  const { editor } = useEditorStore();
+  const value = editor?.getAttributes('textStyle').color || '#000000';
+
+  const onChange = ( color: ColorResult ) => {
+    editor?.chain().focus().setColor(color.hex).run();
+  }
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button className='h-7 min-w-7 shrink-0 flex flex-col items-center justify-center hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm'>
+          <span className='text-xs'>A</span>
+          <div className='h-0.5 w-full' style={{ backgroundColor: value }}></div>
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className='p-0'>
+        <SketchPicker color={value} onChange={onChange} />
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+};
+
+const HighlightColorButton = () => {
+  const { editor } = useEditorStore();
+  const value = editor?.getAttributes('highlight').color || '#ffffff';
+
+  const onChange = ( color: ColorResult ) => {
+    editor?.chain().focus().setHighlight({ color: color.hex }).run();
+  }
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button className='h-7 min-w-7 shrink-0 flex flex-col items-center justify-center hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm'>
+          <HighlighterIcon className='size-4' />
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className='p-0'>
+        <SketchPicker color={value} onChange={onChange} />
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+};
 
 export const Toolbar = () => {
   const { editor } = useEditorStore();
@@ -225,6 +267,8 @@ export const Toolbar = () => {
       {sections[1].map(item => (
         <ToolbarButton key={item.label} {...item} />
       ))}
+      <TextColorButton />
+      <HighlightColorButton />
       <Separator orientation='vertical' className='h-6 mx-2 bg-neutral-300' />
       {sections[2].map(item => (
         <ToolbarButton key={item.label} {...item} />
