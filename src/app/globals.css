@@ -172,6 +172,17 @@ body {
     }
   }
 
+  /* Link styles */
+  a {
+    /* Use @apply here to inline existing utility classes into your own custom CSS. */
+    @apply text-blue-600;
+    cursor: pointer;
+
+    &:hover {
+      @apply underline;
+    }
+  }
+
   /* Table-specific styling */
   /* https://tiptap.dev/docs/editor/extensions/nodes/table */
   table {

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.4",
     "@radix-ui/react-dropdown-menu": "^2.1.4",
     "@radix-ui/react-separator": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.1",
@@ -16,6 +17,7 @@
     "@tiptap/extension-font-family": "^2.11.0",
     "@tiptap/extension-highlight": "^2.11.0",
     "@tiptap/extension-image": "^2.11.0",
+    "@tiptap/extension-link": "^2.11.1",
     "@tiptap/extension-table": "^2.11.0",
     "@tiptap/extension-table-cell": "^2.11.0",
     "@tiptap/extension-table-header": "^2.11.0",

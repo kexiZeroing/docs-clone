@@ -10,6 +10,7 @@ import TableCell from '@tiptap/extension-table-cell';
 import TableHeader from '@tiptap/extension-table-header';
 import TableRow from '@tiptap/extension-table-row';
 import Image from '@tiptap/extension-image';
+import Link from '@tiptap/extension-link';
 import Underline from '@tiptap/extension-underline';
 import FontFamily from '@tiptap/extension-font-family';
 import TextStyle from '@tiptap/extension-text-style';
@@ -65,6 +66,11 @@ export const Editor = () => {
       TableHeader,
       TableCell,
       Image,
+      Link.configure({
+        openOnClick: false,
+        autolink: true,
+        defaultProtocol: 'https',
+      }),
       Underline,
       FontFamily,
       TextStyle,
