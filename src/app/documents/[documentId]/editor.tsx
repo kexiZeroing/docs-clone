@@ -16,6 +16,7 @@ import FontFamily from '@tiptap/extension-font-family';
 import TextStyle from '@tiptap/extension-text-style';
 import { Color } from '@tiptap/extension-color';
 import Highlight from '@tiptap/extension-highlight';
+import TextAlign from '@tiptap/extension-text-align';
 
 import { useEditorStore } from '@/store/use-editor-store';
 
@@ -78,6 +79,9 @@ export const Editor = () => {
       // https://tiptap.dev/docs/editor/extensions/marks/highlight
       Highlight.configure({
         multicolor: true,
+      }),
+      TextAlign.configure({
+        types: ['heading', 'paragraph'],
       }),
     ],
     content: `

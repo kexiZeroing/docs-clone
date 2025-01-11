@@ -24,6 +24,7 @@
     "@tiptap/extension-table-row": "^2.11.0",
     "@tiptap/extension-task-item": "^2.11.0",
     "@tiptap/extension-task-list": "^2.11.0",
+    "@tiptap/extension-text-align": "^2.11.2",
     "@tiptap/extension-text-style": "^2.11.0",
     "@tiptap/extension-underline": "^2.11.0",
     "@tiptap/pm": "^2.11.0",

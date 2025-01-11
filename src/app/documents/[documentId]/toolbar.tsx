@@ -20,6 +20,11 @@ import {
   ImageIcon,
   UploadIcon,
   SearchIcon,
+  AlignLeftIcon,
+  AlignCenterIcon,
+  AlignRightIcon,
+  ListIcon,
+  ListOrderedIcon,
 } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import {
@@ -304,6 +309,95 @@ const ImageButton = () => {
   )
 };
 
+const AlignButton = () => {
+  const { editor } = useEditorStore();
+  const alignments = [
+    {
+      label: 'Align Left',
+      value: 'left',
+      icon: AlignLeftIcon,
+    },
+    {
+      label: 'Align Center',
+      value: 'center',
+      icon: AlignCenterIcon,
+    },
+    {
+      label: 'Align Right',
+      value: 'right',
+      icon: AlignRightIcon,
+    }
+  ];
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button className='h-7 min-w-7 shrink-0 flex flex-col items-center justify-center hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm'>
+          <AlignLeftIcon className='size-4' />
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className='p-1 flex flex-col gap-y-1'>
+        {alignments.map(({ label, value, icon: Icon }) => (
+          <button
+            key={value}
+            className={cn(
+              'flex items-center gap-x-2 px-2 py-1 rounded-sm hover:bg-neutral-200/80',
+              editor?.isActive({ textAlign: value }) && 'bg-neutral-200/80'
+            )}
+            onClick={() => editor?.chain().focus().setTextAlign(value).run()}
+          >
+            <Icon className='size-4' />
+            <span className='text-sm'>{label}</span>
+          </button>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+};
+
+const ListButton = () => {
+  const { editor } = useEditorStore();
+  const lists = [
+    {
+      label: 'Bullet List',
+      value: 'bulletList',
+      icon: ListIcon,
+      onClick: () => editor?.chain().focus().toggleBulletList().run(),
+    },
+    {
+      label: 'Ordered List',
+      value: 'orderedList',
+      icon: ListOrderedIcon,
+      onClick: () => editor?.chain().focus().toggleOrderedList().run(),
+    }
+  ];
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button className='h-7 min-w-7 shrink-0 flex flex-col items-center justify-center hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm'>
+          <ListIcon className='size-4' />
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className='p-1 flex flex-col gap-y-1'>
+        {lists.map(({ label, value, icon: Icon, onClick }) => (
+          <button
+            key={value}
+            className={cn(
+              'flex items-center gap-x-2 px-2 py-1 rounded-sm hover:bg-neutral-200/80',
+              editor?.isActive({ list: label })  && 'bg-neutral-200/80'
+            )}
+            onClick={onClick}
+          >
+            <Icon className='size-4' />
+            <span className='text-sm'>{label}</span>
+          </button>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+};
+
 export const Toolbar = () => {
   const { editor } = useEditorStore();
 
@@ -385,6 +479,8 @@ export const Toolbar = () => {
       <Separator orientation='vertical' className='h-6 mx-2 bg-neutral-300' />
       <LinkButton />
       <ImageButton />
+      <AlignButton />
+      <ListButton />
       {sections[2].map(item => (
         <ToolbarButton key={item.label} {...item} />
       ))}
