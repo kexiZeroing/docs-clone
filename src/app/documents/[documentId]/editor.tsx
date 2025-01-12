@@ -27,8 +27,7 @@ export const Editor = () => {
     editorProps: {
       attributes: {
         // Pass classes to the element that contains the editor
-        class: "focus: outline-none bg-white border border-[#C7C7C7] flex flex-col min-h-[1054px] w-[816px] py-10 pr-14 cursor-text",
-        style: "padding-left: 56px; padding-right: 56px;",
+        class: "focus: outline-none bg-white border border-[#C7C7C7] flex flex-col min-h-[1054px] w-[816px] py-10 px-[56px] cursor-text",
       }
     },
     onCreate: ({ editor }) => {
@@ -84,23 +83,6 @@ export const Editor = () => {
         types: ['heading', 'paragraph'],
       }),
     ],
-    content: `
-        <p>Hello Tiptap</p>
-        <table>
-          <tbody>
-            <tr>
-              <th>Name</th>
-              <th colspan="3">Description</th>
-            </tr>
-            <tr>
-              <td>Cyndi Lauper</td>
-              <td>Singer</td>
-              <td>Songwriter</td>
-              <td>Actress</td>
-            </tr>
-          </tbody>
-        </table>
-      `,
     immediatelyRender: false,
   });
 
